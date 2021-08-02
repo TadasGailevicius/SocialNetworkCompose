@@ -1,4 +1,4 @@
-package com.tedm.socialnetworkcompose.ui.theme
+package com.tedm.socialnetworkcompose.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
