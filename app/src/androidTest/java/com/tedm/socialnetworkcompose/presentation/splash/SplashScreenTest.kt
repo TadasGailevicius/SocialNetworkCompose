@@ -6,9 +6,14 @@ import androidx.navigation.NavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tedm.socialnetworkcompose.presentation.MainActivity
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SocialNetworkComposeTheme
+import com.tedm.socialnetworkcompose.presentation.util.Screen
+import com.tedm.socialnetworkcompose.util.Constants
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,17 +29,20 @@ class SplashScreenTest {
     @RelaxedMockK
     lateinit var navController: NavController
 
+    private val testDispatcher = TestCoroutineDispatcher()
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
     }
 
     @Test
-    fun splashScreen_displaysAndDisappears() {
+    fun splashScreen_displaysAndDisappears() = testDispatcher.runBlockingTest {
         composeTestRule.setContent {
             SocialNetworkComposeTheme {
                 SplashScreen(
                     navController = navController,
+                    dispatcher = testDispatcher
                 )
             }
         }
@@ -42,5 +50,12 @@ class SplashScreenTest {
         composeTestRule
             .onNodeWithContentDescription("Logo")
             .assertExists()
+
+        advanceTimeBy(Constants.SPLASH_SCREEN_DURATION)
+
+        verify {
+            navController.popBackStack()
+            navController.navigate(Screen.LoginScreen.route)
+        }
     }
 }

@@ -17,35 +17,35 @@ import androidx.navigation.NavController
 import com.tedm.socialnetworkcompose.R
 import com.tedm.socialnetworkcompose.presentation.util.Screen
 import com.tedm.socialnetworkcompose.util.Constants
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 
 @Composable
 fun SplashScreen(
-    navController: NavController
+    navController: NavController,
+    dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) {
     val scale = remember {
         Animatable(0f)
     }
-
     val overshootInterpolator = remember {
         OvershootInterpolator(2f)
     }
-    
-    LaunchedEffect(key1 = true ){
-        scale.animateTo(
-            targetValue = 0.5f,
-            animationSpec = tween(
-                durationMillis = 500,
-                easing = {
-                    overshootInterpolator.getInterpolation(it)
-                }
+    LaunchedEffect(key1 = true) {
+        withContext(dispatcher) {
+            scale.animateTo(
+                targetValue = 0.5f,
+                animationSpec = tween(
+                    durationMillis = 500,
+                    easing = {
+                        overshootInterpolator.getInterpolation(it)
+                    }
+                )
             )
-        )
-        delay(Constants.SPLASH_SCREEN_DURATION)
-        navController.popBackStack()
-        navController.navigate(Screen.LoginScreen.route)
+            delay(Constants.SPLASH_SCREEN_DURATION)
+            navController.popBackStack()
+            navController.navigate(Screen.LoginScreen.route)
+        }
     }
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
