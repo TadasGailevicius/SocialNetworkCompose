@@ -13,6 +13,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import com.tedm.socialnetworkcompose.R
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -22,6 +24,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 fun StandardTextField(
     text: String = "",
     hint: String = "",
+    maxLenght: Int = 40,
     isError: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     onValueChange: (String) -> Unit
@@ -37,7 +40,11 @@ fun StandardTextField(
 
     TextField(
         value = text,
-        onValueChange = onValueChange,
+        onValueChange = {
+                        if(it.length <= maxLenght) {
+                            onValueChange(it)
+                        }
+        },
         placeholder = {
             Text(
                 text = hint,
@@ -76,5 +83,9 @@ fun StandardTextField(
         },
         modifier = Modifier
             .fillMaxWidth()
+            .semantics {
+                testTag = "standard_text_field"
+
+            }
     )
 }
