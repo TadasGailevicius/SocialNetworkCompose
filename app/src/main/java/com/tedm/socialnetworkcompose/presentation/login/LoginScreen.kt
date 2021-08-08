@@ -1,6 +1,7 @@
 package com.tedm.socialnetworkcompose.presentation.login
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -25,15 +26,16 @@ fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+
     Box(
         modifier = Modifier
-        .fillMaxSize()
-        .padding(
-            start = SpaceLarge,
-            end = SpaceLarge,
-            top = SpaceLarge,
-            bottom = 50.dp
-        )
+            .fillMaxSize()
+            .padding(
+                start = SpaceLarge,
+                end = SpaceLarge,
+                top = SpaceLarge,
+                bottom = 50.dp
+            )
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -51,6 +53,7 @@ fun LoginScreen(
                 onValueChange = {
                     viewModel.setUsernameText(it)
                 },
+                error = viewModel.usernameError.value,
                 hint = stringResource(id = R.string.login_hint)
             )
             Spacer(modifier = Modifier.height(SpaceMedium))
@@ -60,8 +63,24 @@ fun LoginScreen(
                     viewModel.setPasswordText(it)
                 },
                 hint = stringResource(id = R.string.password_hint),
-                keyboardType = KeyboardType.Password
+                keyboardType = KeyboardType.Password,
+                error = viewModel.passwordError.value,
+                showPasswordToggle = viewModel.showPassword.value,
+                onPasswordToggleClick = {
+                    viewModel.setShowPassword(it)
+                }
             )
+            Spacer(modifier = Modifier.height(SpaceMedium))
+            Button(
+                onClick = {  },
+                modifier = Modifier.
+                    align(Alignment.End)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.login),
+                    color = MaterialTheme.colors.onPrimary
+                )
+            }
         }
         
         Text(
