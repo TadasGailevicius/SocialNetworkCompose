@@ -1,7 +1,6 @@
-package com.tedm.socialnetworkcompose.presentation.login
+package com.tedm.socialnetworkcompose.presentation.register
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,16 +16,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.tedm.socialnetworkcompose.R
 import com.tedm.socialnetworkcompose.presentation.components.StandardTextField
+import com.tedm.socialnetworkcompose.presentation.login.LoginViewModel
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceMedium
-import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceSmall
 
 @Composable
-fun LoginScreen(
+fun RegisterScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: RegisterViewModel = hiltViewModel()
 ) {
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -42,7 +40,7 @@ fun LoginScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center),
-            ) {
+        ) {
             Text(
                 text = stringResource(id = R.string.login),
                 style = MaterialTheme.typography.h1
@@ -53,7 +51,6 @@ fun LoginScreen(
                 onValueChange = {
                     viewModel.setUsernameText(it)
                 },
-                error = viewModel.usernameError.value,
                 hint = stringResource(id = R.string.login_hint)
             )
             Spacer(modifier = Modifier.height(SpaceMedium))
@@ -63,26 +60,10 @@ fun LoginScreen(
                     viewModel.setPasswordText(it)
                 },
                 hint = stringResource(id = R.string.password_hint),
-                keyboardType = KeyboardType.Password,
-                error = viewModel.passwordError.value,
-                showPasswordToggle = viewModel.showPassword.value,
-                onPasswordToggleClick = {
-                    viewModel.setShowPassword(it)
-                }
+                keyboardType = KeyboardType.Password
             )
-            Spacer(modifier = Modifier.height(SpaceMedium))
-            Button(
-                onClick = {  },
-                modifier = Modifier.
-                    align(Alignment.End)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.login),
-                    color = MaterialTheme.colors.onPrimary
-                )
-            }
         }
-        
+
         Text(
             text = buildAnnotatedString {
                 append(stringResource(id = R.string.dont_have_an_account_yet))
