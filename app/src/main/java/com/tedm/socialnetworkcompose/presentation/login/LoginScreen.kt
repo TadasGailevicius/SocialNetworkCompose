@@ -20,7 +20,6 @@ import com.tedm.socialnetworkcompose.R
 import com.tedm.socialnetworkcompose.presentation.components.StandardTextField
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceMedium
-import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceSmall
 import com.tedm.socialnetworkcompose.presentation.util.Screen
 
 @Composable
@@ -74,7 +73,9 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(SpaceMedium))
             Button(
-                onClick = {  },
+                onClick = {
+                          navController.navigate(Screen.MainFeedScreen.route)
+                },
                 modifier = Modifier.
                     align(Alignment.End)
             ) {
