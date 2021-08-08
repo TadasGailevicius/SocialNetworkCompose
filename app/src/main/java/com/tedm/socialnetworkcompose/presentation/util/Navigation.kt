@@ -5,6 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tedm.socialnetworkcompose.presentation.login.LoginScreen
+import com.tedm.socialnetworkcompose.presentation.main_feed.MainFeedScreen
+import com.tedm.socialnetworkcompose.presentation.register.RegisterScreen
 import com.tedm.socialnetworkcompose.presentation.splash.SplashScreen
 
 @Composable
@@ -19,6 +21,12 @@ fun Navigation() {
         }
         composable(Screen.LoginScreen.route) {
             LoginScreen(navController = navController)
+        }
+        composable(Screen.RegisterScreen.route) {
+            RegisterScreen(navController = navController)
+        }
+        composable(Screen.MainFeedScreen.route) {
+            MainFeedScreen(navController = navController)
         }
     }
     
