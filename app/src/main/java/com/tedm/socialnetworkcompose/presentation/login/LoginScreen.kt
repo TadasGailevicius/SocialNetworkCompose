@@ -1,5 +1,6 @@
 package com.tedm.socialnetworkcompose.presentation.login
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -20,6 +21,7 @@ import com.tedm.socialnetworkcompose.presentation.components.StandardTextField
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceMedium
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceSmall
+import com.tedm.socialnetworkcompose.presentation.util.Screen
 
 @Composable
 fun LoginScreen(
@@ -99,6 +101,11 @@ fun LoginScreen(
             style = MaterialTheme.typography.body1,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
+                .clickable {
+                    navController.navigate(
+                        Screen.RegisterScreen.route
+                    )
+                }
         )
     }
 
