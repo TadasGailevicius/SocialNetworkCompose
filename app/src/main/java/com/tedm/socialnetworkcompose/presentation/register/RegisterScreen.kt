@@ -20,7 +20,6 @@ import com.tedm.socialnetworkcompose.R
 import com.tedm.socialnetworkcompose.presentation.components.StandardTextField
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceMedium
-import com.tedm.socialnetworkcompose.presentation.util.Screen
 
 @Composable
 fun RegisterScreen(

@@ -18,7 +18,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tedm.socialnetworkcompose.presentation.MainActivity
 import com.tedm.socialnetworkcompose.presentation.util.TestTags.STANDARD_TEXT_FIELD
 import com.tedm.socialnetworkcompose.presentation.util.TestTags.PASSWORD_TOGGLE
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
