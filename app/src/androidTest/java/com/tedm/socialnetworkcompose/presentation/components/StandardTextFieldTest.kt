@@ -42,7 +42,7 @@ class StandardTextFieldTest {
                     onValueChange = {
                         text = it
                     },
-                    maxLenght = 5,
+                    maxLength = 5,
                     modifier = Modifier.semantics {
                         testTag = STANDARD_TEXT_FIELD
                     }
@@ -78,11 +78,8 @@ class StandardTextFieldTest {
                     onValueChange = {
                         text = it
                     },
-                    maxLenght = 5,
-                    keyboardType = KeyboardType.Password,
-                    modifier = Modifier.semantics {
-                        testTag = STANDARD_TEXT_FIELD
-                    }
+                    maxLength = 5,
+                    keyboardType = KeyboardType.Password
                 )
             }
         }
