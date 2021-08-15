@@ -7,23 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.tedm.socialnetworkcompose.presentation.components.StandardScaffold
 
 @Composable
 fun ProfileScreen(
     navController: NavController
 ) {
-    StandardScaffold(
-        navController = navController,
-        modifier = Modifier.fillMaxSize()
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "Profile screen")
-        }
-
+        Text(text = "Profile screen")
     }
-
 }
