@@ -36,6 +36,14 @@ class MainActivity : ComponentActivity() {
                             Screen.ActivityScreen.route,
                             Screen.ProfileScreen.route,
                         ),
+                        showBackArrow = navBackStackEntry?.destination?.route in listOf(
+                            Screen.PostDetailScreen.route,
+                            Screen.MessagesScreen.route,
+                            Screen.EditProfileScreen.route,
+                            Screen.SearchScreen.route,
+                            Screen.CreatePostScreen.route,
+                            Screen.PersonListScreen.route,
+                        ),
                         modifier = Modifier.fillMaxSize(),
                         onFabClick = {
                             navController.navigate(Screen.CreatePostScreen.route)
