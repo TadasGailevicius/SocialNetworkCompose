@@ -43,7 +43,7 @@ val Typography = Typography(
         fontFamily = quicksand,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
-        color = TextGray
+        color = TextWhite
     )
 
 )

@@ -61,6 +61,9 @@ fun MainFeedScreen(
                 likeCount = 17,
                 commentCount = 7
             ),
+            onPostClick = {
+                navController.navigate(Screen.PostDetailScreen.route)
+            }
         )
     }
 }
