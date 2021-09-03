@@ -39,4 +39,9 @@
     <string name="posts">Posts</string>
     <string name="unfollow">Unfollow</string>
     <string name="follow">Follow</string>
+    <string name="edit_your_profile">Edit your profile</string>
+    <string name="github_profile_url">Github Profile URL</string>
+    <string name="instagram_profile_url">Instagram Profile URL</string>
+    <string name="linkedin_profile_url">LinkedIn Profile URL</string>
+    <string name="your_bio">Your Bio</string>
 </resources>
