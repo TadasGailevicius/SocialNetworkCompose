@@ -21,10 +21,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.tedm.socialnetworkcompose.presentation.ui.theme.LeadingIconSizeMedium
-import com.tedm.socialnetworkcompose.presentation.ui.theme.LeadingIconSizeSmall
-import com.tedm.socialnetworkcompose.presentation.ui.theme.ProfilePictureSizeSmall
 import com.tedm.socialnetworkcompose.presentation.util.TestTags.STANDARD_TEXT_FIELD
 import com.tedm.socialnetworkcompose.presentation.util.TestTags.PASSWORD_TOGGLE
 
