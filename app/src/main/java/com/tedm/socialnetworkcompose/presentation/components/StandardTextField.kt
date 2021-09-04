@@ -2,25 +2,26 @@ package com.tedm.socialnetworkcompose.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
+import androidx.compose.ui.text.TextStyle
 import com.tedm.socialnetworkcompose.R
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import com.tedm.socialnetworkcompose.presentation.ui.theme.LeadingIconSizeMedium
 import com.tedm.socialnetworkcompose.presentation.util.TestTags.STANDARD_TEXT_FIELD
 import com.tedm.socialnetworkcompose.presentation.util.TestTags.PASSWORD_TOGGLE
 
@@ -30,16 +31,19 @@ fun StandardTextField(
     text: String = "",
     hint: String = "",
     maxLength: Int = 40,
-    error: String = "s",
+    error: String = "",
+    textStyle: TextStyle = TextStyle(
+        color = MaterialTheme.colors.onBackground
+    ),
+    singleLine: Boolean = true,
+    maxLines: Int = 1,
+    leadingIcon: ImageVector? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
+    isPasswordToggleDisplayed: Boolean = keyboardType == KeyboardType.Password,
     showPasswordToggle: Boolean = false,
     onPasswordToggleClick: (Boolean) -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
-    val isPasswordToggleDisplayed by remember {
-        mutableStateOf(keyboardType == KeyboardType.Password)
-    }
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -51,6 +55,8 @@ fun StandardTextField(
                     onValueChange(it)
                 }
             },
+            maxLines = maxLines,
+            textStyle = textStyle,
             placeholder = {
                 Text(
                     text = hint,
@@ -66,9 +72,20 @@ fun StandardTextField(
             } else {
                 VisualTransformation.None
             },
-            singleLine = true,
-            trailingIcon = {
-                if (isPasswordToggleDisplayed) {
+            singleLine = singleLine,
+            leadingIcon = if (leadingIcon != null) {
+                    val icon: @Composable () -> Unit = {
+                        Icon(
+                            imageVector = leadingIcon,
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.onBackground,
+                            modifier = Modifier.size(LeadingIconSizeMedium)
+                        )
+                    }
+                    icon
+            } else null,
+            trailingIcon = if (isPasswordToggleDisplayed) {
+                val icon: @Composable () -> Unit = {
                     IconButton(
                         onClick = {
                             onPasswordToggleClick(!showPasswordToggle)
@@ -93,14 +110,15 @@ fun StandardTextField(
                         )
                     }
                 }
-            },
+                icon
+            } else null,
             modifier = Modifier
                 .fillMaxWidth()
                 .semantics {
                     testTag = STANDARD_TEXT_FIELD
                 }
         )
-        if(error.isNotEmpty()) {
+        if (error.isNotEmpty()) {
             Text(
                 text = error,
                 style = MaterialTheme.typography.body2,

@@ -38,8 +38,10 @@ import com.tedm.socialnetworkcompose.util.Constants.MAX_POST_DESCRIPTION_LINES
 
 @Composable
 fun Post(
+    modifier: Modifier = Modifier,
     post: Post,
-    profilePictureSize: Dp = 75.dp
+    showProfileImage: Boolean = true,
+    onPostClick: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -49,10 +51,13 @@ fun Post(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = profilePictureSize / 2f)
+                .offset(y = if(showProfileImage) ProfilePictureSizeMedium / 2f else 0.dp)
                 .clip(MaterialTheme.shapes.medium)
                 .shadow(5.dp)
                 .background(MediumGray)
+                .clickable {
+                    onPostClick()
+                }
         ) {
             Image(
                 painterResource(id = R.drawable.kermit),
@@ -124,14 +129,16 @@ fun Post(
                 }
             }
         }
-        Image(
-            painterResource(id = R.drawable.sample_image),
-            contentDescription = "Profile picture",
-            modifier = Modifier
-                .size(profilePictureSize)
-                .clip(CircleShape)
-                .align(Alignment.TopCenter)
-        )
+        if(showProfileImage) {
+            Image(
+                painterResource(id = R.drawable.sample_image),
+                contentDescription = "Profile picture",
+                modifier = Modifier
+                    .size(ProfilePictureSizeMedium)
+                    .clip(CircleShape)
+                    .align(Alignment.TopCenter)
+            )
+        }
 
     }
 }

@@ -1,14 +1,17 @@
 package com.tedm.socialnetworkcompose.presentation.components
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.tedm.socialnetworkcompose.R
@@ -20,6 +23,10 @@ fun StandardScaffold(
     navController: NavController,
     modifier: Modifier = Modifier,
     showBottomBar: Boolean = true,
+    showToolbar: Boolean = true,
+    showBackArrow: Boolean = true,
+    navActions: @Composable RowScope.() -> Unit = {},
+    toolbarTitle: String? = null,
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem(
             route = Screen.MainFeedScreen.route,
@@ -47,6 +54,7 @@ fun StandardScaffold(
     content: @Composable () -> Unit
 ) {
     Scaffold(
+
         bottomBar = {
             if (showBottomBar) {
                 BottomAppBar(
