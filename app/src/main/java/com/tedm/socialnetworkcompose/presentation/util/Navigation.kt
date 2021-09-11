@@ -14,6 +14,7 @@ import com.tedm.socialnetworkcompose.presentation.create_post.CreatePostScreen
 import com.tedm.socialnetworkcompose.presentation.edit_profile.EditProfileScreen
 import com.tedm.socialnetworkcompose.presentation.login.LoginScreen
 import com.tedm.socialnetworkcompose.presentation.main_feed.MainFeedScreen
+import com.tedm.socialnetworkcompose.presentation.person_list_screen.PersonListScreen
 import com.tedm.socialnetworkcompose.presentation.post_detail.PostDetailScreen
 import com.tedm.socialnetworkcompose.presentation.profile.ProfileScreen
 import com.tedm.socialnetworkcompose.presentation.register.RegisterScreen
@@ -57,6 +58,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(Screen.SearchScreen.route) {
             SearchScreen(navController = navController)
+        }
+        composable(Screen.PersonListScreen.route) {
+            PersonListScreen(navController = navController)
         }
         composable(Screen.PostDetailScreen.route) {
             PostDetailScreen(
