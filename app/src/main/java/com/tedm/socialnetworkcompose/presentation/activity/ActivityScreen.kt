@@ -14,6 +14,7 @@ import com.tedm.socialnetworkcompose.R
 import com.tedm.socialnetworkcompose.domain.models.Activity
 import com.tedm.socialnetworkcompose.domain.util.ActivityAction
 import com.tedm.socialnetworkcompose.domain.util.DateFormatUtil
+import com.tedm.socialnetworkcompose.presentation.activity.components.ActivityItem
 import com.tedm.socialnetworkcompose.presentation.components.StandardToolbar
 import com.tedm.socialnetworkcompose.presentation.ui.theme.SpaceMedium
 import kotlin.random.Random
