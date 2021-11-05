@@ -94,16 +94,18 @@ class RegisterViewModel @Inject constructor(
         val capitalLetterInPassword = password.any { it.isUpperCase() }
         val numberInPassword = password.any { it.isDigit() }
 
-        if (!capitalLetterInPassword || !numberInPassword) {
-            _state.value = _state.value.copy(
-                passwordError = RegisterState.PasswordError.InvalidPassword
-            )
-        }
-
         if (password.length < Constants.MIN_PASSWORD_LENGTH) {
             _state.value = _state.value.copy(
                 passwordError = RegisterState.PasswordError.InputTooShort
             )
+            return
+        }
+
+        if (!capitalLetterInPassword || !numberInPassword) {
+            _state.value = _state.value.copy(
+                passwordError = RegisterState.PasswordError.InvalidPassword
+            )
+            return
         }
         _state.value = _state.value.copy(
             passwordError = null
