@@ -4,10 +4,10 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.navigation.NavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.tedm.socialnetworkcompose.presentation.MainActivity
-import com.tedm.socialnetworkcompose.presentation.ui.theme.SocialNetworkComposeTheme
-import com.tedm.socialnetworkcompose.presentation.util.Screen
-import com.tedm.socialnetworkcompose.util.Constants
+import com.tedm.socialnetworkcompose.core.presentation.MainActivity
+import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SocialNetworkComposeTheme
+import com.tedm.socialnetworkcompose.core.util.Screen
+import com.tedm.socialnetworkcompose.core.util.Constants
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
