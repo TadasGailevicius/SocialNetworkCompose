@@ -15,9 +15,10 @@ import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.tedm.socialnetworkcompose.presentation.MainActivity
-import com.tedm.socialnetworkcompose.presentation.util.TestTags.STANDARD_TEXT_FIELD
-import com.tedm.socialnetworkcompose.presentation.util.TestTags.PASSWORD_TOGGLE
+import com.tedm.socialnetworkcompose.core.presentation.components.StandardTextField
+import com.tedm.socialnetworkcompose.core.presentation.MainActivity
+import com.tedm.socialnetworkcompose.core.util.TestTags.STANDARD_TEXT_FIELD
+import com.tedm.socialnetworkcompose.core.util.TestTags.PASSWORD_TOGGLE
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
