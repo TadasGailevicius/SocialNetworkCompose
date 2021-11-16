@@ -41,6 +41,7 @@ import com.tedm.socialnetworkcompose.core.presentation.ui.theme.ProfilePictureSi
 import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceMedium
 import com.tedm.socialnetworkcompose.core.domain.states.StandardTextFieldState
+import com.tedm.socialnetworkcompose.feature_profile.presentation.util.EditProfileError
 import kotlin.random.Random
 
 @Composable
@@ -94,7 +95,12 @@ fun EditProfileScreen(
                         .fillMaxWidth(),
                     text = viewModel.usernameState.value.text,
                     hint = stringResource(id = R.string.username),
-                    error = viewModel.usernameState.value.error,
+                    error = when (viewModel.usernameState.value.error) {
+                        is EditProfileError.FieldEmpty -> {
+                            stringResource(id = R.string.this_field_cant_be_empty)
+                        }
+                        else -> ""
+                    },
                     leadingIcon = Icons.Default.Person,
                     onValueChange = {
                         viewModel.setUsernameState(
@@ -108,7 +114,12 @@ fun EditProfileScreen(
                         .fillMaxWidth(),
                     text = viewModel.githubTextFieldState.value.text,
                     hint = stringResource(id = R.string.github_profile_url),
-                    error = viewModel.githubTextFieldState.value.error,
+                    error = when (viewModel.githubTextFieldState.value.error) {
+                        is EditProfileError.FieldEmpty -> {
+                            stringResource(id = R.string.this_field_cant_be_empty)
+                        }
+                        else -> ""
+                    },
                     leadingIcon = ImageVector.vectorResource(id = R.drawable.ic_github),
                     onValueChange = {
                         viewModel.setGithubTextFieldState(
@@ -122,7 +133,12 @@ fun EditProfileScreen(
                         .fillMaxWidth(),
                     text = viewModel.instagramTextFieldState.value.text,
                     hint = stringResource(id = R.string.instagram_profile_url),
-                    error = viewModel.instagramTextFieldState.value.error,
+                    error = when (viewModel.instagramTextFieldState.value.error) {
+                        is EditProfileError.FieldEmpty -> {
+                            stringResource(id = R.string.this_field_cant_be_empty)
+                        }
+                        else -> ""
+                    },
                     leadingIcon = ImageVector.vectorResource(id = R.drawable.ic_instagram),
                     onValueChange = {
                         viewModel.setInstagramTextFieldState(
@@ -136,7 +152,12 @@ fun EditProfileScreen(
                         .fillMaxWidth(),
                     text = viewModel.linkedInTextFieldState.value.text,
                     hint = stringResource(id = R.string.linkedin_profile_url),
-                    error = viewModel.linkedInTextFieldState.value.error,
+                    error = when (viewModel.linkedInTextFieldState.value.error) {
+                        is EditProfileError.FieldEmpty -> {
+                            stringResource(id = R.string.this_field_cant_be_empty)
+                        }
+                        else -> ""
+                    },
                     leadingIcon = ImageVector.vectorResource(id = R.drawable.ic_linkedin),
                     onValueChange = {
                         viewModel.setLinkedInTextFieldState(
@@ -150,7 +171,12 @@ fun EditProfileScreen(
                         .fillMaxWidth(),
                     text = viewModel.bioTextFieldState.value.text,
                     hint = stringResource(id = R.string.your_bio),
-                    error = viewModel.bioTextFieldState.value.error,
+                    error = when (viewModel.bioTextFieldState.value.error) {
+                        is EditProfileError.FieldEmpty -> {
+                            stringResource(id = R.string.this_field_cant_be_empty)
+                        }
+                        else -> ""
+                    },
                     leadingIcon = Icons.Default.Description,
                     singleLine = false,
                     maxLines = 3,

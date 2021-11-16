@@ -25,6 +25,7 @@ import com.tedm.socialnetworkcompose.core.presentation.ui.theme.LeadingIconSizeM
 import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceMedium
 import com.tedm.socialnetworkcompose.core.domain.states.StandardTextFieldState
+import com.tedm.socialnetworkcompose.feature_profile.presentation.util.EditProfileError
 
 @ExperimentalMaterialApi
 @Composable
@@ -56,7 +57,12 @@ fun SearchScreen(
                     .fillMaxWidth(),
                 text = viewModel.searchState.value.text,
                 hint = stringResource(id = R.string.search),
-                error = viewModel.searchState.value.error,
+                error = when (viewModel.searchState.value.error) {
+                    is EditProfileError.FieldEmpty -> {
+                        stringResource(id = R.string.this_field_cant_be_empty)
+                    }
+                    else -> ""
+                },
                 leadingIcon = Icons.Default.Search,
                 onValueChange = {
                     viewModel.setSearchState(
