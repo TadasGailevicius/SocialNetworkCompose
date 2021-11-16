@@ -22,6 +22,7 @@ import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceLarge
 import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceMedium
 import com.tedm.socialnetworkcompose.core.presentation.ui.theme.SpaceSmall
 import com.tedm.socialnetworkcompose.core.domain.states.StandardTextFieldState
+import com.tedm.socialnetworkcompose.feature_post.presentation.util.PostDescriptionError
 
 @Composable
 fun CreatePostScreen(
@@ -75,7 +76,12 @@ fun CreatePostScreen(
                     .fillMaxWidth(),
                 text = viewModel.descriptionState.value.text,
                 hint = stringResource(id = R.string.description),
-                error = viewModel.descriptionState.value.error,
+                error = when (viewModel.descriptionState.value.error) {
+                        is PostDescriptionError.FieldEmpty -> {
+                            stringResource(id = R.string.this_field_cant_be_empty)
+                        }
+                        else -> ""
+                },
                 singleLine = false,
                 maxLines = 5,
                 onValueChange = {
