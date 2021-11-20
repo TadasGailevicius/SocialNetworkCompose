@@ -3,11 +3,13 @@ package com.tedm.socialnetworkcompose.feature_auth.presentation.register
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -31,7 +33,9 @@ fun RegisterScreen(
     val usernameState = viewModel.usernameState.value
     val emailState = viewModel.emailState.value
     val passwordState = viewModel.passwordState.value
-    val state = viewModel.usernameState.value
+    val registerState = viewModel.registerState.value
+    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -117,12 +121,17 @@ fun RegisterScreen(
                 onClick = {
                     viewModel.onEvent(RegisterEvent.Register)
                 },
-                modifier = Modifier.align(Alignment.End)
+                enabled = !registerState.isLoading,
+                modifier = Modifier
+                    .align(Alignment.End)
             ) {
                 Text(
                     text = stringResource(id = R.string.register),
                     color = MaterialTheme.colors.onPrimary
                 )
+            }
+            if(registerState.isLoading) {
+                CircularProgressIndicator()
             }
         }
 
