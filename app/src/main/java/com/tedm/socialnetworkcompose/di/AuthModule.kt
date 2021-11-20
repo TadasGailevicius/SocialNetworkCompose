@@ -1,6 +1,9 @@
 package com.tedm.socialnetworkcompose.di
 
 import com.tedm.socialnetworkcompose.feature_auth.data.remote.AuthApi
+import com.tedm.socialnetworkcompose.feature_auth.data.repository.AuthRepositoryImpl
+import com.tedm.socialnetworkcompose.feature_auth.domain.repository.AuthRepository
+import com.tedm.socialnetworkcompose.feature_auth.domain.use_case.RegisterUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,5 +24,18 @@ object AuthModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AuthApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(api: AuthApi): AuthRepository {
+        return AuthRepositoryImpl(api)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideRegisterUseCase(repository: AuthRepository): RegisterUseCase {
+        return RegisterUseCase(repository)
     }
 }
