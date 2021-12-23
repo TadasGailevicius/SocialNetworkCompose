@@ -2,6 +2,7 @@ package com.tedm.socialnetworkcompose.presentation.util
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -24,7 +25,10 @@ import com.tedm.socialnetworkcompose.presentation.splash.SplashScreen
 
 @ExperimentalMaterialApi
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(
+    navController: NavHostController,
+    scaffoldState: ScaffoldState
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route,
@@ -37,7 +41,10 @@ fun Navigation(navController: NavHostController) {
             LoginScreen(navController = navController)
         }
         composable(Screen.RegisterScreen.route) {
-            RegisterScreen(navController = navController)
+            RegisterScreen(
+                navController = navController,
+                scaffoldState = scaffoldState,
+            )
         }
         composable(Screen.MainFeedScreen.route) {
             MainFeedScreen(navController = navController)
