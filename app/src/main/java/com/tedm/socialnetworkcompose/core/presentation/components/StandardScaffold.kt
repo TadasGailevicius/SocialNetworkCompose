@@ -23,6 +23,7 @@ fun StandardScaffold(
     showBottomBar: Boolean = true,
     showToolbar: Boolean = true,
     showBackArrow: Boolean = true,
+    state: ScaffoldState,
     navActions: @Composable RowScope.() -> Unit = {},
     toolbarTitle: String? = null,
     bottomNavItems: List<BottomNavItem> = listOf(
@@ -79,6 +80,7 @@ fun StandardScaffold(
                 }
             }
         },
+        scaffoldState = state,
         floatingActionButton = {
             if (showBottomBar) {
                 FloatingActionButton(
